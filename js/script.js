@@ -14,15 +14,15 @@
     const activeLinks = document.querySelectorAll('.titles a.active');
 
     for(let activeLink of activeLinks){
-    activeLink.classList.add('active');
+    activeLink.classList.remove('active');
     }   
   
     /* [IN PROGRESS] add class 'active' to the clicked link */
-    console.log('clickedElement (with plus): ' + clickedElement('.titles a.active'));
+    console.log('clickedElement (with plus): ' + clickedElement);
     clickedElement.classList.add('active');
     /* [DONE] remove class 'active' from all articles */
 
-    const activeArticles = document.querySelectorAll('.posts a.active');
+    const activeArticles = document.querySelectorAll('.post.active');
 
     for(let activeArticle of activeArticles){
     activeArticle.classList.remove('active');
