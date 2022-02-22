@@ -4,7 +4,7 @@
   }); */
 
 
-  const titleClickHandler = function(event){
+    const titleClickHandler = function(event){
     event.preventDefault();
     const clickedElement = this;
     console.log('Link was clicked!');
@@ -44,6 +44,42 @@
     console.log('clickedElement (with plus): ' + targetArticle);
     targetArticle.classList.add('active');
 
+    const optArticleSelector = '.post',
+    optTitleSelector = '.post-title',
+    optTitleListSelector = '.titles';
+
+    function generateTitleLinks(){
+
+    /* remove contents of titleList */
+    const titleList = document.querySelector(optTitleListSelector);
+    titleList.innerHTML = '';
+    
+    /* for each article */
+    const articles  = document.querySelector(optArticleSelector);
+
+      let html = '';
+      for(let article of articles){
+          /* get the article id */
+            const articleId = article.getAttribute('id');
+          /* find the title element */ /* get the title from the title element */
+            const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+          
+        
+          /* create HTML of the link */
+            const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+            console.log(linkHTML);
+
+          /* insert link into titleList */
+              /*PIERWSZY SPOSÓB*/
+              /*titleList.insertAdjacentHTML('beforeend', 'co tutaj/gdzie szuka');*/
+
+          /* insert link into html variable */
+            html = html + linkHTML;
+        }
+        titleList.innerHTML = html;
+    }
+
+    generateTitleLinks();
 
 
   }
