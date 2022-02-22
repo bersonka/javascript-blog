@@ -43,19 +43,20 @@
     /* [DONE] add class 'active' to the correct article */
     console.log('clickedElement (with plus): ' + targetArticle);
     targetArticle.classList.add('active');
+  };
 
     const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles';
 
-    function generateTitleLinks(){
+    function generateTitleLinks() {
 
     /* remove contents of titleList */
     const titleList = document.querySelector(optTitleListSelector);
     titleList.innerHTML = '';
     
     /* for each article */
-    const articles  = document.querySelector(optArticleSelector);
+    const articles  = document.querySelectorAll(optArticleSelector);
 
       let html = '';
       for(let article of articles){
@@ -71,7 +72,7 @@
 
           /* insert link into titleList */
               /*PIERWSZY SPOSÓB*/
-              /*titleList.insertAdjacentHTML('beforeend', 'co tutaj/gdzie szuka');*/
+              /*titleList.insertAdjacentHTML('beforeend', 'html');*/
 
           /* insert link into html variable */
             html = html + linkHTML;
@@ -82,7 +83,7 @@
     generateTitleLinks();
 
 
-  }
+  
   
   const links = document.querySelectorAll('.titles a');
   
