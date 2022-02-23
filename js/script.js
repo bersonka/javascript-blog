@@ -73,7 +73,7 @@
           /* insert link into titleList */
               /*PIERWSZY SPOSÓB*/
               /*titleList.insertAdjacentHTML('beforeend', 'html');*/
-
+              
           /* insert link into html variable */
             html = html + linkHTML;
         }
