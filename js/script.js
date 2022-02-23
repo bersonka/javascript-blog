@@ -33,7 +33,7 @@
     }   
   
     /* [DONE] get 'href' attribute from the clicked link */
-    const articleSelector = clickedElement.getAttribute("href");
+    const articleSelector = clickedElement.getAttribute('href');
     console.log(articleSelector);
 
     /* [DONE] find the correct article using the selector (value of 'href' attribute) */
