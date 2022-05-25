@@ -254,5 +254,5 @@ function authorClickHandler(event) {
     /* END LOOP: for each found author link */
   }
   /* execute function "generateTitleLinks" with article selector as argument */
-  generateTitleLinks('[data-tags~="' + author + '"]');
+  generateTitleLinks('[data-tags="' + author + '"]');
 }
