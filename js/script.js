@@ -60,6 +60,8 @@ function generateTitleLinks(customSelector = '') {
     optArticleSelector + customSelector
   );
   console.log(articles);
+  console.log(customSelector);
+
   let html = '';
   for (let article of articles) {
     /* get the article id */
@@ -93,7 +95,21 @@ const links = document.querySelectorAll('.titles a');
 for (let link of links) {
   link.addEventListener('click', titleClickHandler);
 }
+function calculateTagsParams(tags) {
+  const result = { min: 999, max: 1 };
 
+  for (let tag in tags) {
+    const value = tags[tag];
+    console.log(tag, value);
+    if (value > result.max) {
+      result.max = value;
+    }
+    if (value < result.min) {
+      result.min = value;
+    }
+  }
+  return result;
+}
 function generateTags() {
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -150,13 +166,23 @@ function generateTags() {
   /*tagList.innerHTML = allTags.join(' '); */
   /* console.log(allTags); */
 
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
+
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
 
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
     /* [NEW] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    allTagsHTML +=
+      '<li><a href="#tag-' +
+      tag +
+      '">' +
+      tag +
+      '</a>(' +
+      allTags[tag] +
+      ')</li> ';
   }
   /* [NEW] END LOOP: for each tag in allTags: */
 
@@ -264,7 +290,7 @@ function authorClickHandler(event) {
   const href = clickedElement.getAttribute('href');
 
   /* make a new constant "author" and extract tag from the "href" constant */
-  const author = href.replace('#author=-', '');
+  const author = href.replace('#author-', '');
 
   /* find all author links with class active */
   const activeAuthors = document.querySelectorAll('a.active[href^="#author-"]');
@@ -285,5 +311,5 @@ function authorClickHandler(event) {
     /* END LOOP: for each found author link */
   }
   /* execute function "generateTitleLinks" with article selector as argument */
-  generateTitleLinks('[data-tags="' + author + '"]');
+  generateTitleLinks('[data-author="' + author + '"]');
 }
