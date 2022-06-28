@@ -85,7 +85,7 @@ body {
 
 .list-horizontal {
   li {
-    display: inline-block;
+    display: inline; /*?*/
   }
 }
 
@@ -115,4 +115,18 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+
+/*Tags*/
+.tag-size-5 {
+  font-size: 30px;
+  color:green;
+}
+.tag-size-2 {
+  font-size: 22px;
+  color: lightseagreen;
+}
+.tag-size-1{
+  font-size: 16px;
+  color: grey;
 }

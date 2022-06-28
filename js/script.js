@@ -88,15 +88,16 @@ function generateTitleLinks(customSelector = '') {
     html = html + linkHTML;
   }
   titleList.innerHTML = html;
+
+  const links = document.querySelectorAll('.titles a');
+
+  for (let link of links) {
+    link.addEventListener('click', titleClickHandler);
+  }
 }
 
 generateTitleLinks();
 
-const links = document.querySelectorAll('.titles a');
-
-for (let link of links) {
-  link.addEventListener('click', titleClickHandler);
-}
 function calculateTagsParams(tags) {
   const result = { min: 999, max: 1 };
 
@@ -188,6 +189,11 @@ function generateTags() {
   for (let tag in allTags) {
     /* [NEW] generate code of a link and add it to allTagsHTML */
     /*allTagsHTML += '<li><a href="#tag-' + tag + '">' + tag + '</a>(' + allTags[tag] + ')</li> ';*/
+
+    /* tags cloud with number of tags */
+    /* '<li><a class=" ' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + ' </a> (' + allTags[tag] + ') ' + '</li>'; */
+
+    /*tags cloud without number of tags */
     const tagLinkHTML =
       '<li><a class=" ' +
       calculateTagClass(allTags[tag], tagsParams) +
@@ -195,9 +201,7 @@ function generateTags() {
       tag +
       '">' +
       tag +
-      ' </a> (' +
-      allTags[tag] +
-      ') ' +
+      ' </a>  ' +
       '</li>';
     console.log('tagLinkHTML:', tagLinkHTML);
 
