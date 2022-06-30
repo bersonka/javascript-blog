@@ -2,6 +2,17 @@
     const links = document.querySelectorAll('.titles a');
     console.log('links:', links);
   }); */
+const templates = {
+  articleLink: Handlebars.compile(
+    document.querySelector('#template-article-link').innerHTML
+  ),
+  tagLink: Handlebars.compile(
+    document.querySelector('#template-tag-link').innerHTML
+  ),
+  authorLink: Handlebars.compile(
+    document.querySelector('#template-author-link').innerHTML
+  ),
+};
 
 const opts = {
   articleSelector: '.post',
@@ -75,12 +86,15 @@ function generateTitleLinks(customSelector = '') {
     const articleTitle = article.querySelector(opts.titleSelector).innerHTML;
 
     /* create HTML of the link */
-    const linkHTML =
+    /*const linkHTML =
       '<li><a href="#' +
       articleId +
       '"><span>' +
       articleTitle +
-      '</span></a></li>';
+      '</span></a></li>';*/
+
+    const linkHTMLData = { id: articleId, title: articleTitle };
+    const linkHTML = templates.articleLink(linkHTMLData);
     console.log(linkHTML);
 
     /* insert link into titleList */
@@ -154,8 +168,9 @@ function generateTags() {
       console.log(tag);
 
       /* generate HTML of the link */
-      const tagHTML =
-        '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';
+      /*const tagHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li> ';*/
+      const tagHTMLData = { id: tag, title: tag };
+      const tagHTML = templates.tagLink(tagHTMLData);
       console.log(tagHTML);
 
       /* add generated code to html variable */
@@ -288,7 +303,10 @@ function generateAuthors() {
     console.log(author);
 
     /* generate HTML of the link */
-    const authorHTML = '<a href="#author-' + author + '"> ' + author + ' </a>';
+    /*const authorHTML = '<a href="#author-' + author + '"> ' + author + ' </a>';*/
+
+    const authorHTMLData = { id: author, title: author };
+    const authorHTML = templates.authorLink(authorHTMLData);
 
     /*let sun = `<a href=${author} ${generateTitleLinks} </a>`; */
     console.log(authorHTML);
