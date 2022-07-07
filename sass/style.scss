@@ -48,6 +48,7 @@ body {
 
 .sidebar {
   flex: 1 0 0;
+  
 }
 
 .posts {
@@ -83,9 +84,9 @@ body {
   }
 }
 
-.tags {
+.tags { 
   li {
-    display: inline; 
+    display: inline-flex; 
   }
 }
 

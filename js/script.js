@@ -16,6 +16,9 @@ const templates = {
   tagCloudLink: Handlebars.compile(
     document.querySelector('#template-tag-cloud-link').innerHTML
   ),
+  authorCloudLink: Handlebars.compile(
+    document.querySelector('#template-author-cloud-link').innerHTML
+  ),
 };
 
 const opts = {
@@ -343,19 +346,26 @@ function generateAuthors() {
   /* [NEW] find list of authors in right column */
   const authorList = document.querySelector(opts.authorsListSelector);
 
-  const authorsSideList = calculateTagsParams(allAuthors);
+  const authorsSideList = calculateAuthorsParams(allAuthors);
   console.log('authorsSideList:', authorsSideList);
 
-  let allAuthorsHTML = '';
+  const allAuthorsData = { authors: [] };
   /* [NEW] START LOOP: for each author in allAuthors: */
   for (let author in allAuthors) {
-    allAuthorsHTML += `<li><a href="#author-${author}">${author} ( ${allAuthors[author]} )</a></li>`;
-    console.log('allAuthorsHTML', allAuthorsHTML);
+    /*allAuthorsHTML += `<li><a href="#author-${author}">${author} ( ${allAuthors[author]} )</a></li>`;
+    console.log('allAuthorsHTML', allAuthorsHTML);*/
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAutors[author],
+      className: calculateAuthorsClass(allAuthors[author], authorsSideList),
+    });
   }
   /* [NEW] END LOOP: for each author in allAuthors: */
 
   /*[NEW] add HTML from allAuthorssHTML to tagList */
-  authorList.innerHTML = allAuthorsHTML;
+  /*authorList.innerHTML = allAuthorsHTML;*/
+  authorList.innerHTML = templates.authorCloudLink(allAuthorsData);
+  console.log('allAuthorsData:', allAuthorsData);
 }
 generateAuthors();
 
