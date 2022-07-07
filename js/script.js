@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*document.getElementById('test-button').addEventListener('click', function(){
     const links = document.querySelectorAll('.titles a');
     console.log('links:', links);
@@ -204,7 +205,7 @@ function generateTags() {
   console.log('tagsParams:', tagsParams);
 
   /* [NEW] create variable for all links HTML code */
-  let allTagsHTML = '';
+  const allTagsData = { tags: [] };
 
   /* [NEW] START LOOP: for each tag in allTags: */
   for (let tag in allTags) {
@@ -226,12 +227,20 @@ function generateTags() {
       '</li>';
     console.log('tagLinkHTML:', tagLinkHTML);
 
-    allTagsHTML += tagLinkHTML;
+    /* allTagsHTML += tagLinkHTML; */
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams),
+    });
   }
   /* [NEW] END LOOP: for each tag in allTags: */
 
   /*[NEW] add HTML from allTagsHTML to tagList */
-  tagList.innerHTML = allTagsHTML;
+  /*tagList.innerHTML = allTagsHTML;*/
+  tagList.innerHTML = templates.tagCloudLink(allTagsData);
+
+  console.log('allTagsData:', allTagsData);
 }
 
 generateTags();
