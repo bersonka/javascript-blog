@@ -12,6 +12,9 @@ const templates = {
   authorLink: Handlebars.compile(
     document.querySelector('#template-author-link').innerHTML
   ),
+  tagCloudLink: Handlebars.compile(
+    document.querySelector('#template-tag-cloud-link').innerHTML
+  ),
 };
 
 const opts = {
